@@ -1,77 +1,71 @@
-{{#if pkg.homepage}}
-# [{{title}}]({{pkg.homepage}}) {{#if pkg.version}}*{{pkg.version}}*{{/if}}
-{{else}}
-# {{title}} {{#if pkg.version}}*{{pkg.version}}*{{/if}}
-{{/if}}
+# {{title}}
 
 {{#if description}}
-> {{description}}
+{{description}}
 {{/if}}
 
 {{#each files}}
 
-### {{name}}
-
 {{#each methods}}
 
-#### {{name}}({{params}}) {{#if isPrivate}} *private method*{{/if}}
+{{#if description}}
+## {{description}}
+{{/if}}
 
-{{{description}}}
+{{{tags.summary}}}
 
-{{{body}}}
+{{#if tags.interface}}
+
+### API Gateway URL
+
+`POST {{{tags.interface}}}`
+
+{{/if}}
 
 {{#if tags.param}}
 
-##### Parameters
+### JSON Payload Structure
 
-| Name | Type | Description |  |
+| Parameter | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 {{#each tags.param}}
-| {{name}} | {{#each types}}`{{{.}}}` {{/each}} | {{{replaceNewLinesWithBR description}}} | {{#if isOptional}}*Optional*{{else}}&nbsp;{{/if}} |
+| {{name}} | {{#each types}}`{{{.}}}` {{/each}} | {{{replaceNewLinesWithBR description}}} | {{#if isOptional}}No{{else}}Yes{{/if}} |
 {{/each}}
 
 {{/if}}
 
 {{#if tags.property}}
 
-##### Properties
+### SNS Payload Structure
 
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-{{#each tags.param}}
-| {{name}} | {{#each types}}`{{{.}}}` {{/each}} | {{{replaceNewLinesWithBR description}}} | {{#if isOptional}}*Optional*{{else}}&nbsp;{{/if}} |
+| Key | Type | Description |
+| ---- | ---- | ----------- |
+{{#each tags.property}}
+| {{name}} | {{#each types}}`{{{.}}}` {{/each}} | {{{replaceNewLinesWithBR description}}} |
 {{/each}}
 
 {{/if}}
 
-{{#if tags.example}}
+{{#if tags.yields}}
 
-##### Examples
+### SNS Topic
 
-{{#each tags.example}}
-```javascript
-{{{.}}}
-```
-{{/each}}
+{{tags.yields}}
 
 {{/if}}
-
-##### Returns
 
 {{#if tags.return}}
 
+### Response Values
+
+| Code | Description |
+| ---- | ----------- |
 {{#each tags.return}}
-- {{#each types}}`{{.}}` {{/each}} {{{description}}}
+| {{{replaceNewLinesWithBR description}}} |
 {{/each}}
-
-{{else}}
-
-- `Void`
 
 {{/if}}
 
 {{/each}}
 
 {{/each}}
-
-*Documentation generated with [doxdox](https://github.com/neogeek/doxdox).*
