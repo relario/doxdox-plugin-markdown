@@ -14,6 +14,26 @@
 
 {{{tags.summary}}}
 
+{{#if tags.todo}}
+
+<a href="{{tags.todo}}" target="_blank">View Source Code</a>
+
+{{/if}}
+
+{{#if tags.license}}
+```javascript
+{{tags.license}}
+```
+{{/if}}
+
+{{#if tags.listens}}
+
+### Invoked By
+
+{{tags.listens}}
+
+{{/if}}
+
 {{#if tags.interface}}
 
 ### API Gateway URL
