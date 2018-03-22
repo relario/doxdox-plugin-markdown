@@ -15,9 +15,27 @@
 {{{tags.summary}}}
 
 {{#if tags.sourcecode}}
-
+<aside class="notice">
 <a href="{{tags.sourcecode}}" target="_blank">View Source Code</a>
+</aside>
+{{/if}}
 
+{{#if tags.gsheet}}
+<aside class="notice">
+<a href="{{tags.gsheet}}" target="_new">Open Spreadsheet</a>
+</aside>
+{{/if}}
+
+{{#if tags.gdrive}}
+<aside class="notice">
+<a href="{{tags.gdrive}}" target="_new">Open Google Drive</a>
+</aside>
+{{/if}}
+
+{{#if tags.s3url}}
+<aside class="notice">
+<a href="https://s3.console.aws.amazon.com/s3/object/{{tags.s3url}}?region=eu-west-1&tab=overview" target="_new">Open S3 Bucket</a>
+</aside>
 {{/if}}
 
 {{#if tags.snippet}}
@@ -54,6 +72,14 @@
 
 {{/if}}
 
+{{#if tags.topic}}
+
+### SNS Topic
+
+{{tags.topic}}
+
+{{/if}}
+
 {{#if tags.property}}
 
 ### SNS Payload Structure
@@ -66,11 +92,11 @@
 
 {{/if}}
 
-{{#if tags.topic}}
+{{#if tags.sqs}}
 
-### SNS Topic
+### SQS Messages
 
-{{tags.topic}}
+{{tags.sqs}}
 
 {{/if}}
 
