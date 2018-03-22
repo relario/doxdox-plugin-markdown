@@ -20,25 +20,25 @@
 
 {{/if}}
 
-{{#if tags.license}}
+{{#if tags.snippet}}
 ```javascript
-{{tags.license}}
+{{tags.snippet}}
 ```
 {{/if}}
 
-{{#if tags.listens}}
+{{#if tags.invocation}}
 
 ### Invoked By
 
-{{tags.listens}}
+{{tags.invocation}}
 
 {{/if}}
 
-{{#if tags.interface}}
+{{#if tags.apigateway}}
 
 ### API Gateway URL
 
-`POST {{{tags.interface}}}`
+`POST {{{tags.apigateway}}}`
 
 {{/if}}
 
