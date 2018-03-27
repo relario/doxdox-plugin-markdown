@@ -15,27 +15,35 @@
 {{{tags.summary}}}
 
 {{#if tags.sourcecode}}
+{{#each tags.sourcecode}}
 <aside class="notice">
-<a href="{{tags.sourcecode}}" target="_blank">View Source Code</a>
+<a href="{{description}}" target="_blank">View Source Code on {{name}}</a>
 </aside>
+{{/each}}
 {{/if}}
 
 {{#if tags.gsheet}}
+{{#each tags.gsheet}}
 <aside class="notice">
-<a href="{{tags.gsheet}}" target="_new">Open Spreadsheet</a>
+<a href="{{name}}" target="_new">{{description}}</a>
 </aside>
+{{/each}}
 {{/if}}
 
 {{#if tags.gdrive}}
+{{#each tags.gdrive}}
 <aside class="notice">
-<a href="{{tags.gdrive}}" target="_new">Open Google Drive</a>
+<a href="{{name}}" target="_new">{{description}}</a>
 </aside>
+{{/each}}
 {{/if}}
 
-{{#if tags.s3url}}
+{{#if tags.s3objectpath}}
+{{#each tags.s3objectpath}}
 <aside class="notice">
-<a href="https://s3.console.aws.amazon.com/s3/object/{{tags.s3url}}?region=eu-west-1&tab=overview" target="_new">Open S3 Bucket</a>
+<a href="https://s3.console.aws.amazon.com/s3/object/{{name}}?region=eu-west-1&tab=overview" target="_new">{{description}}</a>
 </aside>
+{{/each}}
 {{/if}}
 
 {{#if tags.snippet}}
@@ -45,43 +53,50 @@
 {{/if}}
 
 {{#if tags.invocation}}
+{{#each tags.invocation}}
+### Invoked By {{name}}
 
-### Invoked By
-
-{{tags.invocation}}
-
+{{#ifEquals name "SNS"}}
+<a href="https://eu-west-1.console.aws.amazon.com/sns/v2/home?region=eu-west-1#/topics/{{description}}" target="_blank">{{description}}</a>
+{{else}}
+{{description}}
+{{/ifEquals}}
+{{/each}}
 {{/if}}
 
 {{#if tags.apigateway}}
-
 ### API Gateway URL
 
-`POST {{{tags.apigateway}}}`
-
+{{#each tags.apigateway}}
+`{{name}} {{description}}`
+{{/each}}
 {{/if}}
 
 {{#if tags.param}}
-
-### JSON Payload Structure
+### API Request Parameters
 
 | Parameter | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 {{#each tags.param}}
 | {{name}} | {{#each types}}`{{{.}}}` {{/each}} | {{{replaceNewLinesWithBR description}}} | {{#if isOptional}}No{{else}}Yes{{/if}} |
 {{/each}}
-
 {{/if}}
 
-{{#if tags.topic}}
-
+{{#if tags.snstopic}}
 ### SNS Topic
 
-{{tags.topic}}
+{{#each tags.snstopic}}
+{{name}} messages -> <a href="https://eu-west-1.console.aws.amazon.com/sns/v2/home?region=eu-west-1#/topics/{{description}}" target="_blank">{{description}}</a>
+{{/each}}
+{{/if}}
 
+{{#if tags.snspath}}
+### SNS Path
+
+{{tags.snspath}}
 {{/if}}
 
 {{#if tags.property}}
-
 ### SNS Payload Structure
 
 | Key | Type | Description |
@@ -89,27 +104,24 @@
 {{#each tags.property}}
 | {{name}} | {{#each types}}`{{{.}}}` {{/each}} | {{{replaceNewLinesWithBR description}}} |
 {{/each}}
-
 {{/if}}
 
-{{#if tags.sqs}}
-
+{{#if tags.sqsque}}
 ### SQS Messages
 
-{{tags.sqs}}
-
+{{#each tags.sqsque}}
+{{name}} messages -> <a href="https://eu-west-1.console.aws.amazon.com/sqs/home?region=eu-west-1" target="_blank">{{description}}</a>
+{{/each}}
 {{/if}}
 
 {{#if tags.return}}
-
-### Response Values
+### Return Values
 
 | Code | Description |
 | ---- | ----------- |
 {{#each tags.return}}
 | {{{replaceNewLinesWithBR description}}} |
 {{/each}}
-
 {{/if}}
 
 {{/each}}
