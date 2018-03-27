@@ -17,7 +17,7 @@
 {{#if tags.sourcecode}}
 {{#each tags.sourcecode}}
 <aside class="notice">
-<a href="{{description}}" target="_blank">View Source Code on {{name}}</a>
+<a href="{{description}}" target="_blank">View source code on {{name}}</a>
 </aside>
 {{/each}}
 {{/if}}
@@ -82,18 +82,12 @@
 {{/each}}
 {{/if}}
 
-{{#if tags.snstopic}}
-### SNS Topic
+{{#if tags.snsoutput}}
+### SNS Output
 
-{{#each tags.snstopic}}
-{{name}} messages -> <a href="https://eu-west-1.console.aws.amazon.com/sns/v2/home?region=eu-west-1#/topics/{{description}}" target="_blank">{{description}}</a>
+{{#each tags.snsoutput}}
+{{description}} <a href="https://eu-west-1.console.aws.amazon.com/sns/v2/home?region=eu-west-1#/topics/{{name}}" target="_blank">{{name}}</a>
 {{/each}}
-{{/if}}
-
-{{#if tags.snspath}}
-### SNS Path
-
-{{tags.snspath}}
 {{/if}}
 
 {{#if tags.property}}
@@ -106,10 +100,10 @@
 {{/each}}
 {{/if}}
 
-{{#if tags.sqsque}}
+{{#if tags.sqsqueue}}
 ### SQS Messages
 
-{{#each tags.sqsque}}
+{{#each tags.sqsqueue}}
 {{name}} messages -> <a href="https://eu-west-1.console.aws.amazon.com/sqs/home?region=eu-west-1" target="_blank">{{description}}</a>
 {{/each}}
 {{/if}}
